@@ -1,0 +1,162 @@
+%% Rescue and Disaster Management System - Use Case Diagram
+flowchart TB
+
+    subgraph SYS["Rescue and Disaster Management System"]
+        direction TB
+
+        %% ==================== CITIZEN ====================
+        subgraph CITIZEN_GROUP["Citizen / Victim"]
+            direction LR
+            Citizen(["🧍<br>Citizen / Victim"])
+
+            subgraph CITIZEN_UC["Citizen Use Cases"]
+                direction TB
+                UC1(["Register / Login"])
+                UC2(["Report Incident"])
+                UC3(["Track Request Status"])
+                UC4(["View Alerts & Notifications"])
+                UC5(["Provide Feedback"])
+                UC6(["Rate Service"])
+                UC7(["Provide Incident Details"])
+                UC8(["Upload Photos/Videos"])
+                UC9(["Share Location"])
+                UC10(["Select Incident Type"])
+            end
+
+            Citizen --- UC1
+            Citizen --- UC2
+            Citizen --- UC3
+            Citizen --- UC4
+            Citizen --- UC5
+
+            UC2 -. "<<include>>" .-> UC7
+            UC7 -. "<<include>>" .-> UC8
+            UC7 -. "<<include>>" .-> UC9
+            UC7 -. "<<include>>" .-> UC10
+            UC5 -. "<<extend>>" .-> UC6
+        end
+
+        %% ==================== EMERGENCY PROVIDER ====================
+        subgraph PROVIDER_GROUP["Emergency Service Provider"]
+            direction LR
+            Provider(["🧍<br>Emergency Service Provider<br>(Police / Fire / Ambulance)"])
+
+            subgraph PROVIDER_UC["Provider Use Cases"]
+                direction TB
+                UC11(["Receive Incident Alert"])
+                UC12(["View Incident Details"])
+                UC13(["Update Status"])
+                UC14(["Coordinate Response"])
+                UC15(["Generate Report"])
+            end
+
+            Provider --- UC11
+            Provider --- UC12
+            Provider --- UC13
+            Provider --- UC14
+            UC14 -. "<<include>>" .-> UC15
+            UC7 -. "<<include>>" .-> UC11
+        end
+
+        %% ==================== RESCUE TEAM ====================
+        subgraph RESCUE_GROUP["Rescue Team Member"]
+            direction LR
+            Rescue(["🧍<br>Rescue Team Member"])
+
+            subgraph RESCUE_UC["Rescue Team Use Cases"]
+                direction TB
+                UC16(["View Assigned Tasks"])
+                UC17(["Update Task Status"])
+                UC18(["Request Resources"])
+                UC19(["Check Resource Availability"])
+                UC20(["Communicate"])
+                UC21(["Send / Receive Message"])
+                UC22(["Manage Resources<br>(Equipment, Vehicles, Supplies)"])
+            end
+
+            Rescue --- UC16
+            Rescue --- UC17
+            Rescue --- UC18
+            Rescue --- UC20
+
+            UC18 -. "<<include>>" .-> UC19
+            UC19 -. "<<include>>" .-> UC22
+            UC20 -. "<<include>>" .-> UC21
+        end
+
+        %% ==================== NGO / VOLUNTEER ====================
+        subgraph NGO_GROUP["NGO / Volunteer"]
+            direction LR
+            NGO(["🧍<br>NGO / Volunteer"])
+
+            subgraph NGO_UC["NGO / Volunteer Use Cases"]
+                direction TB
+                UC23(["View Opportunities"])
+                UC24(["Register as Volunteer"])
+                UC25(["Accept / Reject Task"])
+                UC26(["Report Activity"])
+            end
+
+            NGO --- UC23
+            NGO --- UC24
+            NGO --- UC25
+            NGO --- UC26
+            UC22 -. "<<include>>" .-> UC25
+        end
+
+        %% ==================== ADMINISTRATOR ====================
+        subgraph ADMIN_GROUP["Administrator"]
+            direction LR
+            Admin(["🧍<br>Administrator"])
+
+            subgraph ADMIN_UC["Administrator Use Cases"]
+                direction TB
+                UC27(["Manage Users"])
+                UC28(["Manage Incidents"])
+                UC29(["Manage Resources"])
+                UC30(["Generate Analytics & Reports"])
+                UC31(["System Settings"])
+                UC32(["Backup & Restore"])
+                UC33(["Audit Logs"])
+            end
+
+            Admin --- UC27
+            Admin --- UC28
+            Admin --- UC29
+
+            UC27 -. "<<include>>" .-> UC30
+            UC28 -. "<<include>>" .-> UC30
+            UC29 -. "<<include>>" .-> UC30
+            UC30 -. "<<include>>" .-> UC31
+            UC30 -. "<<include>>" .-> UC32
+            UC30 -. "<<include>>" .-> UC33
+        end
+    end
+
+    %% ==================== STYLING ====================
+    classDef citizen fill:#c8e6c9,stroke:#2e7d32,stroke-width:1px,color:#111;
+    classDef provider fill:#ffcc99,stroke:#e65100,stroke-width:1px,color:#111;
+    classDef rescue fill:#fff2b2,stroke:#f9a825,stroke-width:1px,color:#111;
+    classDef ngo fill:#e1bee7,stroke:#6a1b9a,stroke-width:1px,color:#111;
+    classDef admin fill:#bbdefb,stroke:#1565c0,stroke-width:1px,color:#111;
+    classDef actor fill:#ffffff,stroke:#333333,stroke-width:1.5px,color:#111,font-weight:bold;
+
+    class UC1,UC2,UC3,UC4,UC5,UC6,UC7,UC8,UC9,UC10 citizen;
+    class UC11,UC12,UC13,UC14,UC15 provider;
+    class UC16,UC17,UC18,UC19,UC20,UC21,UC22 rescue;
+    class UC23,UC24,UC25,UC26 ngo;
+    class UC27,UC28,UC29,UC30,UC31,UC32,UC33 admin;
+
+    class Citizen,Provider,Rescue,NGO,Admin actor;
+
+    style SYS fill:#f5f9fc,stroke:#1a3a5c,stroke-width:2px
+    style CITIZEN_GROUP fill:transparent,stroke:transparent
+    style PROVIDER_GROUP fill:transparent,stroke:transparent
+    style RESCUE_GROUP fill:transparent,stroke:transparent
+    style NGO_GROUP fill:transparent,stroke:transparent
+    style ADMIN_GROUP fill:transparent,stroke:transparent
+    style CITIZEN_UC fill:transparent,stroke:transparent
+    style PROVIDER_UC fill:transparent,stroke:transparent
+    style RESCUE_UC fill:transparent,stroke:transparent
+    style NGO_UC fill:transparent,stroke:transparent
+    style ADMIN_UC fill:transparent,stroke:transparent
