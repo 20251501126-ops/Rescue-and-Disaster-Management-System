@@ -26,7 +26,7 @@ system helps the dispatcher select and assign the nearest suitable
 rescue team. Rescue teams receive the incident details and can update
 their status and location while travelling to the affected area.
 
-If injured people require medical attention, the system can coordinate
+ the system can coordinate
 with nearby hospitals or medical teams and provide information about the
 number of victims and their medical requirements. Police, fire
 departments, ambulance services, and other emergency agencies can also
