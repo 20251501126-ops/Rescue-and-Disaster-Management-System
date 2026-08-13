@@ -10,10 +10,10 @@ The main goal of this system is to **report emergencies quickly, assign suitable
 
 * Allow citizens to report emergencies easily.
 * Record the emergency location and details.
-* Help authorities manage and prioritize emergency requests.
 * Assign rescue teams to emergencies.
+* Help authorities manage and prioritize emergency requests.
+* Assign rescue teams to emergencies and assign them tasks.
 * Allow rescue teams to update rescue status.
-* Keep citizens informed about the progress of their emergency request.
 * Improve coordination between citizens, authorities, and rescue teams.
 
 ---

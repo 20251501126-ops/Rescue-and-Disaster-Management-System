@@ -3,7 +3,7 @@
 ## Problem Statement
 
 During natural or man-made disasters such as floods, earthquakes, fires,
-building collapses, road accidents, and industrial accidents, people
+building collapses, road accidents, and industrial accidents, people moslty
 often need immediate rescue and medical assistance. In such situations,
 communication between victims, emergency authorities, rescue teams,
 hospitals, police, fire departments, and other agencies can become
