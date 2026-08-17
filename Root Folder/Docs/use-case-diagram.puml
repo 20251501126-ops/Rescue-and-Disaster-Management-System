@@ -1,0 +1,36 @@
+@startuml
+title Rescue and Disaster Management System - Object Diagram
+
+object "citizen101 : Citizen" as citizen101 {
+  citizenId = "C101"
+  name = "Rahul Sharma"
+  contactNumber = "9876543210"
+}
+
+object "emergency501 : Emergency" as emergency501 {
+  emergencyId = "E501"
+  type = "Flood"
+  location = "Vadodara"
+  severity = "High"
+  numberOfPeopleAffected = 12
+  status = "In Action"
+}
+
+object "authority01 : DisasterManagementAuthority" as authority01 {
+  authorityId = "DMA01"
+  name = "District Disaster Management Authority"
+}
+
+object "team07 : RescueTeam" as team07 {
+  teamId = "RT07"
+  teamName = "Alpha Rescue Team"
+  teamStatus = "In Action"
+  currentLocation = "Vadodara"
+}
+
+citizen101 -- emergency501 : reports >
+authority01 -- emergency501 : manages >
+authority01 -- team07 : assigns >
+emergency501 -- team07 : assigned to >
+
+@enduml

@@ -1,6 +1,6 @@
 # Use Cases for Rescue and Disaster Management System
 
-## Use Case 1: Report Emergency
+# Use Case 1: Report Emergency
 
 - **Actor:** Citizen
 - **Precondition:** User has access to the system.
@@ -11,7 +11,7 @@
 - **Alternate Flow:** If the location is missing, the system prompts the citizen to provide or correct the location.
 - **Postcondition:** The emergency request is logged and becomes visible to the appropriate authorities.
 
-## Use Case 2: Assign Rescue Team
+# Use Case 2: Assign Rescue Team
 
 - **Actor:** Disaster Management Authority
 - **Precondition:** An emergency request exists in the system.
@@ -21,7 +21,7 @@
   3. Authority assigns a suitable rescue team.
 - **Postcondition:** The assigned rescue team receives the rescue assignment.
 
-## Use Case 3: Update Rescue Status
+# Use Case 3: Update Rescue Status
 
 - **Actor:** Rescue Team
 - **Precondition:** A rescue task has been assigned to the team.

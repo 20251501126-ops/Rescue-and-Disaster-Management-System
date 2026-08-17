@@ -1,6 +1,6 @@
 # Rescue and Disaster Management System
 
-## Problem Statement
+** Problem Statement
 
 During natural or man-made disasters such as floods, earthquakes, fires,
 building collapses, road accidents, and industrial accidents, people moslty
@@ -20,7 +20,7 @@ current location. The system can capture the user's location using GPS,
 reducing the time required to identify the affected area.
 
 Once an emergency is reported, the emergency dispatcher can verify the
-information and assess the severity of the incident. Based on the
+information and assess the severity of the incident.Based on the
 location, severity, available resources, and type of disaster, the
 system helps the dispatcher select and assign the nearest suitable
 rescue team. Rescue teams receive the incident details and can update
