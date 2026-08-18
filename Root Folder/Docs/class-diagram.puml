@@ -1,0 +1,47 @@
+@startuml
+title Rescue and Disaster Management System - Domain Class Diagram
+
+class Citizen {
+  - citizenId : String
+  - name : String
+  - contactNumber : String
+  + reportEmergency() : Emergency
+  + provideEmergencyDetails() : void
+}
+
+class Emergency {
+  - emergencyId : String
+  - type : String
+  - location : String
+  - severity : String
+  - numberOfPeopleAffected : int
+  - status : String
+  + createEmergency() : void
+  + updateStatus(status : String) : void
+  + getDetails() : String
+}
+
+class DisasterManagementAuthority {
+  - authorityId : String
+  - name : String
+  + verifyEmergency() : boolean
+  + prioritizeEmergency() : void
+  + assignRescueTeam(team : RescueTeam) : void
+}
+
+class RescueTeam {
+  - teamId : String
+  - teamName : String
+  - teamStatus : String
+  - currentLocation : String
+  + acceptTask() : void
+  + updateStatus(status : String) : void
+  + completeRescue() : void
+}
+
+Citizen "1" -- "0..*" Emergency : reports >
+DisasterManagementAuthority "1" -- "0..*" Emergency : manages >
+DisasterManagementAuthority "1" -- "0..*" RescueTeam : assigns >
+Emergency "0..1" -- "1" RescueTeam : assigned to >
+
+@enduml
