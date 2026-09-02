@@ -3,29 +3,21 @@ import java.util.List;
 
 /**
  * INHERITANCE
- * -----------
- * Citizen "is-a" Person, so it extends Person and automatically gets
- * name, contactNumber, personId, and getContactCard() for free.
+ * Citizen "is-a" Person, so it extends Person.
  */
 public class Citizen extends Person {
 
     // COMPOSITION: a Citizen "has-a" list of emergencies they reported.
-    // These Emergency objects are still independently meaningful
-    // (an Emergency can outlive being "owned" conceptually by one
-    // citizen reference), so this list is a simple has-a relationship.
     private List<Emergency> reportedEmergencies;
 
-    public Citizen(String personId, String name, String contactNumber) {
-        // super(...) -> calls the Person constructor to initialise the
-        // inherited fields. Must be the first statement in the
-        // subclass constructor.
+    public Citizen(String personId, String name, String contactNumber) { // CONSTRUCTOR
+        // super(...) -> calss Person's constructor to initialize inherited fields.
         super(personId, name, contactNumber);
         this.reportedEmergencies = new ArrayList<>();
     }
 
     // METHOD OVERRIDING
-    // Citizen provides its own version of the abstract method defined
-    // in Person. This is compile-time contract + run-time behaviour.
+    // Citizen provides its own implementation of the abstract method describeRole() from Person.
     @Override
     public String describeRole() {
         return getName() + " is a Citizen who can report emergencies.";

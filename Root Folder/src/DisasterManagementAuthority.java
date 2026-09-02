@@ -11,7 +11,7 @@ public class DisasterManagementAuthority {
     private List<RescueTeam> rescueTeams;
     private List<Emergency> emergencies;
 
-    public DisasterManagementAuthority(String authorityId, String name) {
+    public DisasterManagementAuthority(String authorityId, String name) { // CONSTRUCTOR
         this.authorityId = authorityId;
         this.name = name;
         this.rescueTeams = new ArrayList<>();

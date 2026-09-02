@@ -31,8 +31,6 @@ public class Emergency {
                       String severity, int numberOfPeopleAffected, Citizen reportedBy) {
         this.emergencyId = emergencyId;
         this.type = type;
-        // COMPOSITION in action: Emergency creates its own Location
-        // internally. Nobody hands Emergency a pre-built Location.
         this.location = new Location(0.0, 0.0, locationArea);
         this.severity = severity;
         this.numberOfPeopleAffected = numberOfPeopleAffected;
