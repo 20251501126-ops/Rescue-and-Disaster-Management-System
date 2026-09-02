@@ -44,6 +44,19 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
   }
 }</component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="Rescue-and-Disaster-Management-System" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="Rescue-and-Disaster-Management-System" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
