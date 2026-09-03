@@ -6,10 +6,6 @@ public class RescueTeam {
     private String teamId;
     private String teamName;
     private String teamStatus;
-
-    // default (package-private) access modifier -> no keyword at all.
-    // Visible only within this same package, unlike private (this
-    // class only) or public (everywhere).
     String currentLocation;
 
     // COMPOSITION: a RescueTeam "has-a" list of RescueTeamMembers.
