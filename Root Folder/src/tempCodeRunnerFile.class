@@ -1,0 +1,28 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class Citizen extends Person {
+   private List<Emergency> reportedEmergencies = new ArrayList();
+
+   public Citizen(String var1, String var2, String var3) {
+      super(var1, var2, var3);
+   }
+
+   public String describeRole() {
+      return this.getName() + " is a Citizen who can report emergencies.";
+   }
+
+   public Emergency reportEmergency(String var1, String var2) {
+      return this.reportEmergency(var1, var2, "Unknown", 1);
+   }
+
+   public Emergency reportEmergency(String var1, String var2, String var3, int var4) {
+      Emergency var5 = new Emergency("E" + (this.reportedEmergencies.size() + 1) + "-" + this.getPersonId(), var1, var2, var3, var4, this);
+      this.reportedEmergencies.add(var5);
+      return var5;
+   }
+
+   public List<Emergency> getReportedEmergencies() {
+      return this.reportedEmergencies;
+   }
+}
