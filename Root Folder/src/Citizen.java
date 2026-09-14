@@ -33,9 +33,7 @@ public class Citizen extends Person {
     // More detailed version of the same operation. Java picks the
     // right one based on the arguments you pass at the call site.
     public Emergency reportEmergency(String type, String location, String severity, int peopleAffected) {
-        Emergency emergency = new Emergency(
-                "E" + (reportedEmergencies.size() + 1) + "-" + getPersonId(),
-                type, location, severity, peopleAffected, this);
+        Emergency emergency = new Emergency( "E" + (reportedEmergencies.size() + 1) + "-" + getPersonId(), type, location, severity, peopleAffected, this);
         reportedEmergencies.add(emergency);
         return emergency;
     }
