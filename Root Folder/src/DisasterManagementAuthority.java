@@ -3,6 +3,13 @@ import java.util.List;
 
 public class DisasterManagementAuthority {
 
+    // FINAL VARIABLE (a constant)
+    // "final" here means this value is set ONCE and can never be
+    // reassigned afterwards. Combined with "static", there is only
+    // ONE copy shared by the whole class, and it never changes —
+    // exactly what a constant should be.
+    public static final String SYSTEM_NAME = "Rescue and Disaster Management System";
+
     private String authorityId;
     private String name;
 
@@ -11,7 +18,7 @@ public class DisasterManagementAuthority {
     private List<RescueTeam> rescueTeams;
     private List<Emergency> emergencies;
 
-    public DisasterManagementAuthority(String authorityId, String name) { // CONSTRUCTOR
+    public DisasterManagementAuthority(String authorityId, String name) {
         this.authorityId = authorityId;
         this.name = name;
         this.rescueTeams = new ArrayList<>();
