@@ -29,7 +29,7 @@ public class RescueTeam {
     }
 
     public void acceptTask(Emergency emergency) {
-        emergency.assignTeam(this);
+        emergency.assignTeam(this);  // this means the current RescueTeam object
         updateStatus("En Route");
     }
 
