@@ -6,7 +6,7 @@
  * their own role-specific behaviour via the abstract method
  * describeRole(). You can never do `new Person(...)` — only concrete
  * subclasses can be created. This is "abstraction": we expose only
- * what matters (name, contact, role) and hide how each role actually
+ * what matters (name, contact, role) and hide how each role actual
  */
 public abstract class Person {
 
