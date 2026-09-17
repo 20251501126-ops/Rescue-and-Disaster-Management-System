@@ -18,9 +18,6 @@ public:
     friend Emergency operator+(Emergency e1, Emergency e2);
 };
 
-// OPERATOR OVERLOADING using the friend function
-// This function does the actual work of "adding" two Emergency
-// objects together.
 Emergency operator+(Emergency e1, Emergency e2) {
     int total = e1.peopleAffected + e2.peopleAffected;  // private data accessed directly
     return Emergency(total);
