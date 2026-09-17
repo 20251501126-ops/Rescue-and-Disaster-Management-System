@@ -19,42 +19,34 @@ using namespace std;
  * inside the class.
  */
 
-class Emergency {
+ class Emergency {
 private:
-    int peopleAffected;   // private data
+    int id;
+    string type;
+    string location;
+    string status;
 
 public:
-    // Constructor
-    Emergency(int peopleAffected = 0) {
-        this->peopleAffected = peopleAffected;
+    Emergency(int i, string t, string l) {
+        id = i;
+        type = t;
+        location = l;
+        status = "Pending";
     }
 
-    // Friend declarations for the two stream operators.
-    friend ostream& operator<<(ostream &out, const Emergency &e);
-    friend istream& operator>>(istream &in, Emergency &e);
+    friend ostream& operator<<(ostream& out, const Emergency& e) {
+        out << "Emergency ID: " << e.id << endl;
+        out << "Type: " << e.type << endl;
+        out << "Location: " << e.location << endl;
+        out << "Status: " << e.status << endl;
+
+        return out;
+    }
 };
 
-// OVERLOADING << (output stream operator) using a friend function
-ostream& operator<<(ostream &out, const Emergency &e) {
-    out << "People Affected: " << e.peopleAffected;   // private data accessed directly
-    return out;
-}
-
-// OVERLOADING >> (input stream operator) using a friend function
-istream& operator>>(istream &in, Emergency &e) {
-    cout << "Enter number of people affected: ";
-    in >> e.peopleAffected;   // private data accessed directly
-    return in;
-}
-
 int main() {
-    Emergency e1(15);
-
+    Emergency e1(15, "Fire", "123 Main St");
     cout << "Emergency 1 -> " << e1 << endl;   // uses overloaded <<
-
-    Emergency e2;
-    cin >> e2;                                 // uses overloaded >>
-    cout << "Emergency 2 -> " << e2 << endl;   // uses overloaded << again
 
     return 0;
 }
