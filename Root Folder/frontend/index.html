@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rescue & Disaster Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>Rescue & Disaster Management System</h1>
+
+    <p>
+        Emergency Response System
+    </p>
+
+    <p>
+        Report emergencies quickly and connect with rescue authorities.
+    </p>
+
+    <button onclick="showEmergencyForm()">Report Emergency</button>
+
+<div id="emergencyForm" style="display: none;">
+
+    <h2>Report Emergency</h2>
+
+    <label>Emergency Type:</label>
+    <select id="emergencyType">
+        <option value="Flood">Flood</option>
+        <option value="Fire">Fire</option>
+        <option value="Earthquake">Earthquake</option>
+        <option value="Accident">Accident</option>
+    </select>
+
+    <br><br>
+
+    <label>Location:</label>
+    <input type="text" id="location" placeholder="Enter location">
+
+    <br><br>
+
+    <label>People Affected:</label>
+    <input type="number" id="peopleAffected" min="1">
+
+    <br><br>
+
+    <label>Severity:</label>
+    <select id="severity">
+        <option value="Low">Low</option>
+        <option value="Medium">Medium</option>
+        <option value="High">High</option>
+        <option value="Critical">Critical</option>
+    </select>
+
+    <br><br>
+
+    <label>Description:</label>
+    <br>
+    <textarea id="description" rows="4" cols="40"
+        placeholder="Describe the emergency"></textarea>
+
+    <br><br>
+
+    <button onclick="submitEmergency()">Submit Emergency</button>
+
+</div>
+<script src="script.js"></script>
+</body>
+</html>
