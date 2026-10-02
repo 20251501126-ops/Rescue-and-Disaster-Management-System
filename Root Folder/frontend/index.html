@@ -1,69 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rescue & Disaster Management</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rescue Dispatch — Rescue and Disaster Management System</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <h1>Rescue & Disaster Management System</h1>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <div>
+        <h1>Rescue Dispatch</h1>
+        <p class="brand-sub">Rescue &amp; Disaster Management System</p>
+      </div>
+    </div>
+    <div class="stats" id="stats">
+      <div class="stat"><span class="stat-value" id="statActive">0</span><span class="stat-label">active incidents</span></div>
+      <div class="stat"><span class="stat-value" id="statTeams">0</span><span class="stat-label">teams free</span></div>
+    </div>
+  </header>
 
-    <p>
-        Emergency Response System
-    </p>
+  <nav class="tabs" role="tablist" aria-label="Role">
+    <button class="tab active" data-tab="citizen" role="tab" aria-selected="true">Report an Emergency</button>
+    <button class="tab" data-tab="authority" role="tab" aria-selected="false">Authority Console</button>
+    <button class="tab" data-tab="team" role="tab" aria-selected="false">Rescue Team</button>
+  </nav>
 
-    <p>
-        Report emergencies quickly and connect with rescue authorities.
-    </p>
+  <main class="layout">
 
-    <button onclick="showEmergencyForm()">Report Emergency</button>
+    <section class="panel" id="panel-citizen" data-panel="citizen">
+      <h2>Report an emergency</h2>
+      <p class="panel-hint">Give the essentials — a dispatcher will verify and assign a team.</p>
+      <form id="reportForm" class="form">
+        <label>Citizen name
+          <input type="text" id="citizenName" placeholder="Rahul Sharma" required>
+        </label>
+        <label>Type of emergency
+          <select id="type" required>
+            <option value="Flood">Flood</option>
+            <option value="Fire">Fire</option>
+            <option value="Building Collapse">Building Collapse</option>
+            <option value="Road Accident">Road Accident</option>
+            <option value="Earthquake">Earthquake</option>
+          </select>
+        </label>
+        <label>Location
+          <input type="text" id="location" placeholder="Vadodara" required>
+        </label>
+        <label>Severity
+          <select id="severity" required>
+            <option value="Low">Low</option>
+            <option value="Medium" selected>Medium</option>
+            <option value="High">High</option>
+          </select>
+        </label>
+        <label>People affected
+          <input type="number" id="affected" min="1" value="1" required>
+        </label>
+        <button type="submit" class="btn-primary">Submit report</button>
+        <p class="form-status" id="citizenStatus" role="status"></p>
+      </form>
+    </section>
 
-<div id="emergencyForm" style="display: none;">
+    <section class="panel hidden" id="panel-authority" data-panel="authority">
+      <h2>Authority console</h2>
+      <p class="panel-hint">Verify incoming reports and assign the nearest free team.</p>
+      <div id="authorityQueue" class="queue"></div>
+    </section>
 
-    <h2>Report Emergency</h2>
+    <section class="panel hidden" id="panel-team" data-panel="team">
+      <h2>Rescue team status</h2>
+      <p class="panel-hint">Update your team's progress as you respond.</p>
+      <div id="teamList" class="queue"></div>
+    </section>
 
-    <label>Emergency Type:</label>
-    <select id="emergencyType">
-        <option value="Flood">Flood</option>
-        <option value="Fire">Fire</option>
-        <option value="Earthquake">Earthquake</option>
-        <option value="Accident">Accident</option>
-    </select>
+    <aside class="log">
+      <h2>Emergency log</h2>
+      <div id="log" class="log-list"></div>
+    </aside>
 
-    <br><br>
+  </main>
 
-    <label>Location:</label>
-    <input type="text" id="location" placeholder="Enter location">
+  <footer class="footer">
+    <span>Rescue &amp; Disaster Management System — Frontend v1.1</span>
+  </footer>
 
-    <br><br>
-
-    <label>People Affected:</label>
-    <input type="number" id="peopleAffected" min="1">
-
-    <br><br>
-
-    <label>Severity:</label>
-    <select id="severity">
-        <option value="Low">Low</option>
-        <option value="Medium">Medium</option>
-        <option value="High">High</option>
-        <option value="Critical">Critical</option>
-    </select>
-
-    <br><br>
-
-    <label>Description:</label>
-    <br>
-    <textarea id="description" rows="4" cols="40"
-        placeholder="Describe the emergency"></textarea>
-
-    <br><br>
-
-    <button onclick="submitEmergency()">Submit Emergency</button>
-
-</div>
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
