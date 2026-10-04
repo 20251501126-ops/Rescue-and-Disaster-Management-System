@@ -134,7 +134,7 @@ int main() {
     // A BASE CLASS POINTER pointing to a DERIVED CLASS OBJECT.
     // Because respond() is virtual, the DERIVED version still runs,
     // even though the pointer's declared type is the base class.
-    RescueTeam* polymorphicPtr = diveTeamPtr;
+    RescueTeam* polymorphicPtr = diveTeamPtr;   
     cout << "Calling through a base-class pointer that points to a derived object:" << endl;
     polymorphicPtr->respond();   // prints the SPECIALIZED version, not the general one
 

@@ -3,7 +3,7 @@ import java.util.List;
 
 /**
  * INHERITANCE
- * Citizen "is-a" Person, so it extends Person.
+ * Citizen "is-a" Person so it is extends Person.
  */
 public class Citizen extends Person {
 
