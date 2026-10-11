@@ -31,4 +31,13 @@ public class EmergencyService {
 
         return emergencyRepository.findAll();
     }
+    public Emergency verifyEmergency(String id) {
+
+     Emergency emergency = emergencyRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Emergency not found"));
+
+     emergency.setStatus("Verified");
+
+     return emergencyRepository.save(emergency);
+    }
 }

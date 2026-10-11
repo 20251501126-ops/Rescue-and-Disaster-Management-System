@@ -26,4 +26,9 @@ public class EmergencyController {
     public List<Emergency> getAllEmergencies() {
         return emergencyService.getAllEmergencies();
     }
+
+    @PutMapping("/{id}/verify")
+    public Emergency verifyEmergency(@PathVariable String id) {
+        return emergencyService.verifyEmergency(id);
+    }
 }
