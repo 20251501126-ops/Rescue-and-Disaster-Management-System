@@ -35,14 +35,16 @@ public class DisasterManagementAuthority {
     }
 
     // Picks the first available team and assigns it.
-    public void assignRescueTeam(Emergency emergency) {
+    // If every team is busy, it THROWS NoTeamAvailableException
+    // instead of just printing a message.
+    public void assignRescueTeam(Emergency emergency) throws NoTeamAvailableException {
         for (RescueTeam team : rescueTeams) {
             if (team.getTeamStatus().equals("Available")) {
                 team.acceptTask(emergency);
                 return;
             }
         }
-        System.out.println("No available rescue team for " + emergency.getEmergencyId());
+        throw new NoTeamAvailableException("No available rescue team for " + emergency.getEmergencyId());
     }
 
     public String getName() { return name; }

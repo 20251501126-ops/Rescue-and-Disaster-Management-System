@@ -35,7 +35,7 @@ public class Emergency {
 
     // CONSTRUCTOR OVERLOADING (version 2) — full info
     public Emergency(String emergencyId, String type, String locationArea,
-                     String severity, int numberOfPeopleAffected, Citizen reportedBy) {
+                      String severity, int numberOfPeopleAffected, Citizen reportedBy) {
         this.emergencyId = emergencyId;
         this.type = type;
         // COMPOSITION in action: Emergency creates its own Location

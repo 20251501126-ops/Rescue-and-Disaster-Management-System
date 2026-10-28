@@ -1,5 +1,6 @@
 /**
  * INHERITANCE
+ * -----------
  * RescueTeamMember is also a Person (a human), so it shares the same
  * base fields/behaviour as Citizen, but plays a different role.
  */
