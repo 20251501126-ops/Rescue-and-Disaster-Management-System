@@ -2,26 +2,14 @@
 #include <string>
 using namespace std;
 
-/* =====================================================================
- * TYPE CASTING BETWEEN CLASSES AND BASIC TYPES  (basic level)
- * =====================================================================
- * C++ already converts int -> double automatically. For OUR classes we
- * must teach C++ how to convert, using special functions:
- *
- *  1) BASIC -> CLASS : a CONSTRUCTOR with one argument
- *                      (conversion constructor, in the destination class)
- *  2) CLASS -> BASIC : a CASTING OPERATOR function, "operator int()"
- *                      (in the source class)
- *  3) CLASS -> CLASS : a CASTING OPERATOR in the source class
- *                      (or a one-argument constructor in the destination)
- * ===================================================================== */
-
+ 
 // Destination class for the CLASS -> CLASS example
 class AlertMessage {
 private:
     string text;
 public:
-    AlertMessage(string text = "") { this->text = text; }
+    AlertMessage(string text = "")
+     { this->text = text; }
     void display() { cout << "ALERT: " << text << endl; }
 };
 
