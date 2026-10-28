@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Rescue and Disaster Management System</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            color: #243447;
+        }
+
+        /* Navigation */
+        header {
+            background: #13243a;
+            color: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        header h2 {
+            color: #ff7777;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #ffb454;
+        }
+
+        /* Hero section */
+        .hero {
+            background: linear-gradient(120deg, #13243a, #28546a);
+            color: white;
+            padding: 70px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .hero-content {
+            max-width: 650px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #df4545;
+            color: white;
+            padding: 12px 22px;
+            border-radius: 8px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background: #bd3030;
+        }
+
+        .emergency-box {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid #8094a8;
+            padding: 25px;
+            border-radius: 15px;
+            min-width: 240px;
+        }
+
+        .emergency-box h2 {
+            margin-bottom: 10px;
+        }
+
+        .emergency-number {
+            font-size: 40px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        /* Main sections */
+        .container {
+            width: 86%;
+            margin: 40px auto;
+        }
+
+        .section-title {
+            margin-bottom: 20px;
+            color: #13243a;
+        }
+
+        .section-title p {
+            color: #66758a;
+            margin-top: 8px;
+        }
+
+        /* Cards */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px #0000000c;
+            border: 1px solid #e3e9ef;
+        }
+
+        .card h3 {
+            margin: 12px 0;
+            color: #13243a;
+        }
+
+        .card p {
+            color: #66758a;
+            line-height: 1.6;
+        }
+
+        .icon {
+            font-size: 35px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #fff0dc;
+            color: #925d0b;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* Preparedness */
+        .two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .checklist {
+            margin-top: 18px;
+        }
+
+        .checklist label {
+            display: block;
+            margin: 15px 0;
+            line-height: 1.5;
+        }
+
+        .checklist input {
+            margin-right: 8px;
+        }
+
+        .progress-bg {
+            height: 10px;
+            background: #e5eaf0;
+            border-radius: 10px;
+            margin-top: 20px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            width: 0%;
+            background: #21845b;
+            transition: width 0.3s;
+        }
+
+        #progressText {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        /* Emergency contacts */
+        .contact {
+            margin-top: 20px;
+            padding: 15px 0;
+            border-bottom: 1px solid #e3e9ef;
+        }
+
+        .contact a {
+            color: #c53030;
+            font-weight: bold;
+        }
+
+        /* Report form */
+        form {
+            margin-top: 20px;
+        }
+
+        form label {
+            display: block;
+            margin: 15px 0 6px;
+            font-weight: bold;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccd6e0;
+            border-radius: 7px;
+            margin-top: 5px;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        form button {
+            margin-top: 18px;
+        }
+
+        #message {
+            margin-top: 15px;
+            color: #21845b;
+            font-weight: bold;
+            overflow-wrap: anywhere;
+        }
+
+        .note {
+            font-size: 13px;
+            color: #66758a;
+            margin-top: 12px;
+            line-height: 1.5;
+        }
+
+        /* Footer */
+        footer {
+            background: #13243a;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            margin-top: 50px;
+            line-height: 1.8;
+        }
+
+        /* Responsive design */
+        @media (max-width: 800px) {
+            .cards {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .two-columns {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            header {
+                flex-direction: column;
+            }
+
+            nav {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 12px;
+            }
+
+            nav a {
+                margin: 0;
+            }
+
+            .container {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <h2>🛟 RescueReady</h2>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#alerts">Alerts</a>
+            <a href="#prepare">Preparedness</a>
+            <a href="#contacts">Contacts</a>
+            <a href="#report">Report</a>
+        </nav>
+    </header>
+
+    <!-- Home Section -->
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+            <h1>Rescue and Disaster Management System</h1>
+
+            <p>
+                A community safety platform concept for disaster awareness,
+                emergency preparedness, and incident reporting.
+                Stay informed and be prepared.
+            </p>
+
+            <a href="#report" class="btn">Report an Incident</a>
+        </div>
+
+        <div class="emergency-box">
+            <h2>Emergency Help - India</h2>
+            <p>For immediate emergency assistance:</p>
+
+            <div class="emergency-number">112</div>
+
+            <p>
+                This is a student demonstration website.
+                Follow official emergency instructions.
+            </p>
+        </div>
+
+    </section>
+
+    <!-- Alerts Section -->
+    <section class="container" id="alerts">
+
+        <div class="section-title">
+            <h2>Disaster Alerts</h2>
+            <p>Sample awareness notices, not live alerts.</p>
+        </div>
+
+        <div class="cards">
+
+            <div class="card">
+                <div class="icon">🌧️</div>
+                <span class="badge">Weather Safety</span>
+
+                <h3>Heavy Rainfall</h3>
+
+                <p>
+                    Avoid flooded roads, drains, and fast-moving water.
+                    Follow official weather advisories.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="icon">🔥</div>
+                <span class="badge">Fire Safety</span>
+
+                <h3>Fire Emergency</h3>
+
+                <p>
+                    Move to safety, alert others if safe,
+                    and contact emergency services.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="icon">🌎</div>
+                <span class="badge">Earthquake Safety</span>
+
+                <h3>Earthquake Preparedness</h3>
+
+                <p>
+                    Practice Drop, Cover, and Hold On.
+                    Follow official evacuation instructions.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Preparedness Section -->
+    <section class="container" id="prepare">
+
+        <div class="section-title">
+            <h2>Emergency Preparedness</h2>
+            <p>Prepare your emergency kit.</p>
+        </div>
+
+        <div class="two-columns">
+
+            <div class="card">
+                <h3>🎒 Emergency Kit Checklist</h3>
+
+                <div class="checklist" id="checklist">
+
+                    <label>
+                        <input type="checkbox">
+                        Drinking water and ready-to-eat food
+                    </label>
+
+                    <label>
+                        <input type="checkbox">
+                        First-aid supplies and required medicines
+                    </label>
+
+                    <label>
+                        <input type="checkbox">
+                        Torch, batteries, and power bank
+                    </label>
+
+                    <label>
+                        <input type="checkbox">
+                        Important documents in a waterproof pouch
+                    </label>
+
+                    <label>
+                        <input type="checkbox">
+                        Emergency contacts and family meeting point
+                    </label>
+
+                </div>
+
+                <div class="progress-bg">
+                    <div class="progress" id="progressBar"></div>
+                </div>
+
+                <p id="progressText">0 of 5 completed</p>
+            </div>
+
+            <!-- Contacts -->
+            <div class="card" id="contacts">
+
+                <h3>📞 Emergency Contacts</h3>
+
+                <p>
+                    Emergency response number for India:
+                </p>
+
+                <div class="contact">
+                    <strong>Emergency Response</strong>
+                    <p>Police, fire, medical and other emergencies</p>
+
+                    <a href="tel:112">112 - Call</a>
+                </div>
+
+                <p class="note">
+                    Add other local contact numbers only after
+                    verifying them with official authorities.
+                </p>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Report Incident Section -->
+    <section class="container" id="report">
+
+        <div class="section-title">
+            <h2>Report an Incident</h2>
+            <p>Fill in the form to create a demo report preview.</p>
+        </div>
+
+        <div class="two-columns">
+
+            <div class="card">
+
+                <h3>Incident Report Form</h3>
+
+                <form id="incidentForm">
+
+                    <label for="type">Incident Type</label>
+
+                    <select id="type" required>
+                        <option value="">Select incident</option>
+                        <option>Flood</option>
+                        <option>Fire</option>
+                        <option>Earthquake</option>
+                        <option>Road Accident</option>
+                        <option>Other</option>
+                    </select>
+
+                    <label for="urgency">Urgency</label>
+
+                    <select id="urgency" required>
+                        <option value="">Select urgency</option>
+                        <option>Information</option>
+                        <option>Urgent</option>
+                    </select>
+
+                    <label for="area">Area / Landmark</label>
+
+                    <input
+                        type="text"
+                        id="area"
+                        placeholder="Enter area or landmark"
+                        maxlength="120"
+                        required
+                    >
+
+                    <label for="details">Incident Description</label>
+
+                    <textarea
+                        id="details"
+                        placeholder="Describe what happened"
+                        maxlength="700"
+                        required
+                    ></textarea>
+
+                    <button type="submit" class="btn">
+                        Preview Report
+                    </button>
+
+                    <p id="message" role="status" aria-live="polite"></p>
+
+                </form>
+
+                <p class="note">
+                    Demo only: this form does not send reports to
+                    emergency services or save them permanently.
+                    For immediate danger, contact emergency services.
+                </p>
+
+            </div>
+
+            <!-- Safety Information -->
+            <div class="card">
+
+                <h3>Important Safety Guidelines</h3>
+
+                <br>
+
+                <h4>1. Protect Yourself</h4>
+                <p>
+                    Move away from danger if it is safe to do so.
+                </p>
+
+                <br>
+
+                <h4>2. Contact Emergency Services</h4>
+                <p>
+                    Explain the emergency and location clearly.
+                </p>
+
+                <br>
+
+                <h4>3. Follow Official Updates</h4>
+                <p>
+                    Follow verified instructions from authorities.
+                    Do not share unconfirmed information.
+                </p>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <h3>RescueReady</h3>
+
+        <p>
+            Rescue and Disaster Management System
+        </p>
+
+        <p>
+            Educational frontend prototype.
+            Not connected to live emergency systems.
+        </p>
+
+        <p>
+            &copy; <span id="year"></span> RescueReady
+        </p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+
+        // Emergency kit checklist progress
+
+        const checkboxes = document.querySelectorAll(
+            '#checklist input[type="checkbox"]'
+        );
+
+        const progressBar = document.getElementById("progressBar");
+        const progressText = document.getElementById("progressText");
+
+        function updateProgress() {
+
+            let completed = 0;
+
+            checkboxes.forEach(function(checkbox) {
+                if (checkbox.checked) {
+                    completed++;
+                }
+            });
+
+            const total = checkboxes.length;
+
+            const percentage = total
+                ? (completed / total) * 100
+                : 0;
+
+            progressBar.style.width = percentage + "%";
+
+            progressText.textContent =
+                completed + " of " + total + " completed";
+        }
+
+        checkboxes.forEach(function(checkbox) {
+            checkbox.addEventListener("change", updateProgress);
+        });
+
+
+        // Incident report demo form
+
+        const form = document.getElementById("incidentForm");
+
+        form.addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            const type = document.getElementById("type").value;
+            const urgency = document.getElementById("urgency").value;
+            const area = document.getElementById("area").value.trim();
+
+            const message = document.getElementById("message");
+
+            message.textContent =
+                "Demo preview created: " +
+                type + " | " +
+                urgency + " | " +
+                area +
+                ". Report not sent.";
+
+        });
+
+
+        // Current year
+
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+
+    </script>
+
+</body>
+</html>
