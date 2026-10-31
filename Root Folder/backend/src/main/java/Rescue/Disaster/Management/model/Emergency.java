@@ -2,6 +2,8 @@ package Rescue.Disaster.Management.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Min;
 
 @Entity
 public class Emergency {
@@ -9,17 +11,31 @@ public class Emergency {
     @Id
     private String emergencyId;
 
+    @NotBlank(message = "Emergency type is required")
     private String type;
+
+    @NotBlank(message = "Location is required")
     private String location;
+
+    @NotBlank(message = "Severity is required")
     private String severity;
+
+    @Min(value = 1, message = "People affected must be at least 1")
     private int peopleAffected;
+
+    @NotBlank(message = "Reported by is required")
     private String reportedBy;
+
     private String status;
 
+    private String assignedTeamId;
+
+    // Default Constructor
     public Emergency() {
         this.status = "Reported";
     }
 
+    // Parameterized Constructor
     public Emergency(String emergencyId, String type, String location,
                      String severity, int peopleAffected, String reportedBy) {
 
@@ -31,6 +47,8 @@ public class Emergency {
         this.reportedBy = reportedBy;
         this.status = "Reported";
     }
+
+    // Getters and Setters
 
     public String getEmergencyId() {
         return emergencyId;
@@ -86,5 +104,13 @@ public class Emergency {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getAssignedTeamId() {
+        return assignedTeamId;
+    }
+
+    public void setAssignedTeamId(String assignedTeamId) {
+        this.assignedTeamId = assignedTeamId;
     }
 }
