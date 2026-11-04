@@ -24,13 +24,27 @@ public class RescueTeamService {
         return rescueTeamRepository.findAll();
     }
 
-    public RescueTeam updateTeamStatus(String teamId, String status) {
+     public RescueTeam updateTeamStatus(String teamId, String status) {
 
-        RescueTeam team = rescueTeamRepository.findById(teamId)
-                .orElseThrow(() -> new RuntimeException("Rescue team not found"));
+    RescueTeam team = rescueTeamRepository.findById(teamId)
+            .orElseThrow(() -> new RuntimeException("Rescue team not found"));
 
-        team.setTeamStatus(status);
-
-        return rescueTeamRepository.save(team);
+    if (status == null || status.isBlank()) {
+        throw new IllegalArgumentException("Status cannot be empty");
     }
+
+    String normalizedStatus = status.trim();
+
+    if (!normalizedStatus.equalsIgnoreCase("Available")
+            && !normalizedStatus.equalsIgnoreCase("En Route")
+            && !normalizedStatus.equalsIgnoreCase("In Action")
+            && !normalizedStatus.equalsIgnoreCase("Completed")) {
+
+        throw new IllegalArgumentException("Invalid team status");
+    }
+
+    team.setTeamStatus(normalizedStatus);
+
+    return rescueTeamRepository.save(team);
+   }
 }
