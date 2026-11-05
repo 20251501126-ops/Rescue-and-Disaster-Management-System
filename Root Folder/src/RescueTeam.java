@@ -6,6 +6,10 @@ public class RescueTeam {
     private String teamId;
     private String teamName;
     private String teamStatus;
+
+    // default (package-private) access modifier -> no keyword at all.
+    // Visible only within this same package, unlike private (this
+    // class only) or public (everywhere).
     String currentLocation;
 
     // COMPOSITION: a RescueTeam "has-a" list of RescueTeamMembers.
@@ -48,5 +52,32 @@ public class RescueTeam {
     public String getSummary() {
         return teamName + " [" + teamId + "] - status=" + teamStatus
                 + ", members=" + members.size();
+    }
+
+    // NESTED CLASS (static nested class)
+    // TeamReport is defined INSIDE RescueTeam because it only makes
+    // sense in the context of a team — it's a small snapshot/record
+    // class, not something used anywhere else in the project. Writing
+    // it as a nested class instead of a separate file keeps closely
+    // related code grouped together.
+    public static class TeamReport {
+        private String teamId;
+        private String status;
+        private int memberCount;
+
+        public TeamReport(String teamId, String status, int memberCount) {
+            this.teamId = teamId;
+            this.status = status;
+            this.memberCount = memberCount;
+        }
+
+        public String print() {
+            return "Report -> Team: " + teamId + ", Status: " + status + ", Members: " + memberCount;
+        }
+    }
+
+    // Builds a TeamReport snapshot from this team's current data.
+    public TeamReport generateReport() {
+        return new TeamReport(teamId, teamStatus, members.size());
     }
 }
