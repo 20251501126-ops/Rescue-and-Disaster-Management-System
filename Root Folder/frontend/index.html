@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,126 +9,151 @@
 </head>
 <body>
 
-  <header class="topbar">
-    <div class="brand">
-      <span class="brand-mark" aria-hidden="true"></span>
-      <div>
-        <h1>Rescue Dispatch</h1>
-        <p class="brand-sub">Rescue &amp; Disaster Management System</p>
-      </div>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark" aria-hidden="true"></span>
+    <div>
+      <h1>Rescue Dispatch</h1>
+      <p class="brand-sub">Rescue &amp; Disaster Management System</p>
     </div>
-    <div class="stats" id="stats">
-      <div class="stat"><span class="stat-value" id="statActive">0</span><span class="stat-label">active incidents</span></div>
-      <div class="stat"><span class="stat-value crit" id="statCritical">0</span><span class="stat-label">high severity open</span></div>
-      <div class="stat"><span class="stat-value" id="statTeams">0</span><span class="stat-label">teams free</span></div>
-      <div class="stat"><span class="stat-value ok" id="statDone">0</span><span class="stat-label">resolved</span></div>
-    </div>
-  </header>
+  </div>
 
-  <nav class="tabs" role="tablist" aria-label="Role">
-    <button class="tab active" data-tab="citizen" role="tab" aria-selected="true" aria-controls="panel-citizen" id="tab-citizen">Report an Emergency</button>
-    <button class="tab" data-tab="authority" role="tab" aria-selected="false" aria-controls="panel-authority" id="tab-authority" tabindex="-1">Authority Console <span class="tab-count" id="queueCount" hidden>0</span></button>
-    <button class="tab" data-tab="team" role="tab" aria-selected="false" aria-controls="panel-team" id="tab-team" tabindex="-1">Rescue Team</button>
-  </nav>
+  <div class="stats" id="stats">
+    <div class="stat"><span class="stat-value" id="statActive">0</span><span class="stat-label">active incidents</span></div>
+    <div class="stat"><span class="stat-value crit" id="statCritical">0</span><span class="stat-label">high severity open</span></div>
+    <div class="stat"><span class="stat-value" id="statTeams">0</span><span class="stat-label">teams free</span></div>
+    <div class="stat"><span class="stat-value ok" id="statDone">0</span><span class="stat-label">resolved</span></div>
+  </div>
+</header>
 
-  <main class="layout">
+<nav class="tabs" role="tablist" aria-label="Role">
+  <button class="tab active" data-tab="citizen" role="tab" aria-selected="true" aria-controls="panel-citizen" id="tab-citizen">Report an Emergency</button>
+  <button class="tab" data-tab="authority" role="tab" aria-selected="false" aria-controls="panel-authority" id="tab-authority" tabindex="-1">Authority Console <span class="tab-count" id="queueCount" hidden>0</span></button>
+  <button class="tab" data-tab="team" role="tab" aria-selected="false" aria-controls="panel-team" id="tab-team" tabindex="-1">Rescue Team</button>
+</nav>
 
-    <section class="panel" id="panel-citizen" data-panel="citizen" role="tabpanel" aria-labelledby="tab-citizen">
-      <h2>Report an emergency</h2>
-      <p class="panel-hint">Give the essentials — a dispatcher will verify and assign a team.</p>
-      <form id="reportForm" class="form" novalidate>
-        <label>Citizen name
-          <input type="text" id="citizenName" placeholder="Rahul Sharma" required minlength="2">
-        </label>
-        <label>Type of emergency
-          <select id="type" required>
-            <option value="Flood">Flood</option>
-            <option value="Fire">Fire</option>
-            <option value="Building Collapse">Building Collapse</option>
-            <option value="Road Accident">Road Accident</option>
-            <option value="Earthquake">Earthquake</option>
-          </select>
-        </label>
-        <label>Location
-          <input type="text" id="location" placeholder="Vadodara" required>
-        </label>
-        <button type="button" id="geoBtn" class="btn-link">Use my current location</button>
-        <label>Severity
-          <select id="severity" required>
-            <option value="Low">Low</option>
-            <option value="Medium" selected>Medium</option>
-            <option value="High">High</option>
-          </select>
-        </label>
-        <label>People affected
-          <input type="number" id="affected" min="1" max="10000" value="1" required>
-        </label>
-        <button type="submit" class="btn-primary">Submit report</button>
-        <p class="form-status" id="citizenStatus" role="status"></p>
-      </form>
+<main class="layout">
 
-      <div class="tracker">
-        <h3>Track a report</h3>
-        <form id="trackForm" class="track-row">
-          <input type="text" id="trackId" placeholder="E001" aria-label="Report ID" autocomplete="off">
-          <button type="submit" class="btn-small">Check status</button>
-        </form>
-        <div id="trackResult" aria-live="polite"></div>
-      </div>
-    </section>
+  <section class="panel" id="panel-citizen" data-panel="citizen" role="tabpanel" aria-labelledby="tab-citizen">
+    <h2>Report an emergency</h2>
+    <p class="panel-hint">Give the essentials — a dispatcher will verify and assign a team.</p>
 
-    <section class="panel hidden" id="panel-authority" data-panel="authority" role="tabpanel" aria-labelledby="tab-authority">
-      <div class="panel-head">
-        <div>
-          <h2>Authority console</h2>
-          <p class="panel-hint">Verify incoming reports and assign a free team. Most urgent incidents are listed first.</p>
-        </div>
-        <button type="button" class="btn-small" id="exportBtn">Export CSV</button>
-      </div>
-      <div class="toolbar">
-        <input type="search" id="filterQ" placeholder="Search by ID, type, place or name" aria-label="Search incidents">
-        <select id="filterStatus" aria-label="Filter by status">
-          <option value="active">Active</option>
-          <option value="all">All</option>
-          <option value="Reported">Reported</option>
-          <option value="Verified">Verified</option>
-          <option value="Assigned">Assigned</option>
-          <option value="Completed">Completed</option>
-          <option value="Rejected">Rejected</option>
+    <form id="reportForm" class="form" novalidate>
+
+      <label>Citizen name
+        <input type="text" id="citizenName" placeholder="Rahul Sharma" required minlength="2">
+      </label>
+
+      <label>Mobile number
+        <input
+          type="tel"
+          id="citizenPhone"
+          placeholder="9876543210"
+          inputmode="numeric"
+          autocomplete="tel"
+          maxlength="10"
+          pattern="[6-9][0-9]{9}"
+          required>
+      </label>
+
+      <label>Type of emergency
+        <select id="type" required>
+          <option value="Flood">Flood</option>
+          <option value="Fire">Fire</option>
+          <option value="Building Collapse">Building Collapse</option>
+          <option value="Road Accident">Road Accident</option>
+          <option value="Earthquake">Earthquake</option>
         </select>
-        <select id="filterSeverity" aria-label="Filter by severity">
-          <option value="all">Any severity</option>
-          <option value="High">High</option>
-          <option value="Medium">Medium</option>
+      </label>
+
+      <label>Location
+        <input type="text" id="location" placeholder="Vadodara" required>
+      </label>
+
+      <button type="button" id="geoBtn" class="btn-link">Use my current location</button>
+
+      <label>Severity
+        <select id="severity" required>
           <option value="Low">Low</option>
+          <option value="Medium" selected>Medium</option>
+          <option value="High">High</option>
         </select>
+      </label>
+
+      <label>People affected
+        <input type="number" id="affected" min="1" max="10000" value="1" required>
+      </label>
+
+      <button type="submit" class="btn-primary">Submit report</button>
+      <p class="form-status" id="citizenStatus" role="status"></p>
+    </form>
+
+    <div class="tracker">
+      <h3>Track a report</h3>
+      <form id="trackForm" class="track-row">
+        <input type="text" id="trackId" placeholder="E001" aria-label="Report ID" autocomplete="off">
+        <button type="submit" class="btn-small">Check status</button>
+      </form>
+      <div id="trackResult" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section class="panel hidden" id="panel-authority" data-panel="authority" role="tabpanel" aria-labelledby="tab-authority">
+    <div class="panel-head">
+      <div>
+        <h2>Authority console</h2>
+        <p class="panel-hint">Verify incoming reports and assign a free team. Most urgent incidents are listed first.</p>
       </div>
-      <div id="authorityQueue" class="queue"></div>
-    </section>
+      <button type="button" class="btn-small" id="exportBtn">Export CSV</button>
+    </div>
 
-    <section class="panel hidden" id="panel-team" data-panel="team" role="tabpanel" aria-labelledby="tab-team">
-      <h2>Rescue team status</h2>
-      <p class="panel-hint">Update your team's progress as you respond.</p>
-      <div id="teamList" class="queue"></div>
-    </section>
+    <div class="toolbar">
+      <input type="search" id="filterQ" placeholder="Search by ID, type, place or name" aria-label="Search incidents">
 
-    <aside class="log">
-      <h2>Emergency log</h2>
-      <div id="log" class="log-list"></div>
-    </aside>
+      <select id="filterStatus" aria-label="Filter by status">
+        <option value="active">Active</option>
+        <option value="all">All</option>
+        <option value="Reported">Reported</option>
+        <option value="Verified">Verified</option>
+        <option value="Assigned">Assigned</option>
+        <option value="Completed">Completed</option>
+        <option value="Rejected">Rejected</option>
+      </select>
 
-  </main>
+      <select id="filterSeverity" aria-label="Filter by severity">
+        <option value="all">Any severity</option>
+        <option value="High">High</option>
+        <option value="Medium">Medium</option>
+        <option value="Low">Low</option>
+      </select>
+    </div>
 
-  <footer class="footer">
-    <span>Rescue &amp; Disaster Management System — Frontend v1.2</span>
-    <span class="footer-actions">
-      <button type="button" class="btn-link" id="demoBtn">Load demo data</button>
-      <button type="button" class="btn-link" id="resetBtn">Reset all data</button>
-    </span>
-  </footer>
+    <div id="authorityQueue" class="queue"></div>
+  </section>
 
-  <div id="toasts" class="toasts" aria-live="polite"></div>
+  <section class="panel hidden" id="panel-team" data-panel="team" role="tabpanel" aria-labelledby="tab-team">
+    <h2>Rescue team status</h2>
+    <p class="panel-hint">Update your team's progress as you respond.</p>
+    <div id="teamList" class="queue"></div>
+  </section>
 
-  <script src="script.js"></script>
+  <aside class="log">
+    <h2>Emergency log</h2>
+    <div id="log" class="log-list"></div>
+  </aside>
+
+</main>
+
+<footer class="footer">
+  <span>Rescue &amp; Disaster Management System — Frontend v1.2</span>
+  <span class="footer-actions">
+    <button type="button" class="btn-link" id="demoBtn">Load demo data</button>
+    <button type="button" class="btn-link" id="resetBtn">Reset all data</button>
+  </span>
+</footer>
+
+<div id="toasts" class="toasts" aria-live="polite"></div>
+
+<script src="script.js"></script>
 </body>
 </html>
