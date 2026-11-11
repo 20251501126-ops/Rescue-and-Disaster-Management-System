@@ -39,10 +39,18 @@ public class EmergencyController {
         return emergencyService.verifyEmergency(id);
     }
 
+    // Reject a report that has not been assigned to a rescue team.
+    @PutMapping("/{id}/reject")
+    public Emergency rejectEmergency(@PathVariable String id) {
+        return emergencyService.rejectEmergency(id);
+    }
+
     // 4. Assign Rescue Team
     @PutMapping("/{id}/assign")
-    public Emergency assignTeam(@PathVariable String id) {
-        return emergencyService.assignTeam(id);
+    public Emergency assignTeam(
+            @PathVariable String id,
+            @RequestParam(name = "teamId", required = false) String teamId) {
+        return emergencyService.assignTeam(id, teamId);
     }
 
     // 5. Complete Emergency

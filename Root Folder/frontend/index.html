@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,66 +34,88 @@
 <main class="layout">
 
   <section class="panel" id="panel-citizen" data-panel="citizen" role="tabpanel" aria-labelledby="tab-citizen">
-    <h2>Report an emergency</h2>
-    <p class="panel-hint">Give the essentials — a dispatcher will verify and assign a team.</p>
+    <div class="citizen-hero">
+      <div>
+        <p class="eyebrow">CITIZEN PORTAL · LIVE REPORTING</p>
+        <h2>Get help moving.</h2>
+        <p class="panel-hint">Share what happened and where. Your report goes to the response team for review.</p>
+      </div>
+      <div class="live-pill" id="apiConnection" role="status"><span></span> Checking response system…</div>
+    </div>
 
-    <form id="reportForm" class="form" novalidate>
+    <div class="citizen-columns">
+      <div class="citizen-card report-card">
+        <div class="section-heading">
+          <span class="step-number">01</span>
+          <div><h3>Report an emergency</h3><p>Fields marked required help responders act quickly.</p></div>
+        </div>
 
-      <label>Citizen name
-        <input type="text" id="citizenName" placeholder="Rahul Sharma" required minlength="2">
-      </label>
+        <form id="reportForm" class="form citizen-form" novalidate>
+          <div class="field-row">
+            <label>Your name
+              <input type="text" id="citizenName" placeholder="Enter your full name" required minlength="2" autocomplete="name">
+            </label>
+            <label>Mobile number
+              <input type="tel" id="citizenPhone" placeholder="10-digit mobile number" inputmode="numeric" autocomplete="tel" maxlength="10" pattern="[6-9][0-9]{9}" required>
+            </label>
+          </div>
 
-      <label>Mobile number
-        <input
-          type="tel"
-          id="citizenPhone"
-          placeholder="9876543210"
-          inputmode="numeric"
-          autocomplete="tel"
-          maxlength="10"
-          pattern="[6-9][0-9]{9}"
-          required>
-      </label>
+          <div class="field-row">
+            <label>Emergency type
+              <select id="type" required>
+                <option value="Flood">Flood</option>
+                <option value="Fire">Fire</option>
+                <option value="Building Collapse">Building collapse</option>
+                <option value="Road Accident">Road accident</option>
+                <option value="Earthquake">Earthquake</option>
+              </select>
+            </label>
+            <label>People affected
+              <input type="number" id="affected" min="1" max="10000" value="1" required>
+            </label>
+          </div>
 
-      <label>Type of emergency
-        <select id="type" required>
-          <option value="Flood">Flood</option>
-          <option value="Fire">Fire</option>
-          <option value="Building Collapse">Building Collapse</option>
-          <option value="Road Accident">Road Accident</option>
-          <option value="Earthquake">Earthquake</option>
-        </select>
-      </label>
+          <label>Where is help needed?
+            <input type="text" id="location" placeholder="Area, street, city or nearby landmark" required autocomplete="street-address">
+          </label>
+          <button type="button" id="geoBtn" class="btn-link">Use my current location</button>
 
-      <label>Location
-        <input type="text" id="location" placeholder="Vadodara" required>
-      </label>
+          <label>How urgent is it?
+            <select id="severity" required>
+              <option value="Low">Low — no immediate danger</option>
+              <option value="Medium" selected>Medium — help needed soon</option>
+              <option value="High">High — immediate danger</option>
+            </select>
+          </label>
 
-      <button type="button" id="geoBtn" class="btn-link">Use my current location</button>
+          <button type="submit" class="btn-primary">Send emergency report <span aria-hidden="true">→</span></button>
+          <p class="form-status" id="citizenStatus" role="status" aria-live="polite"></p>
+        </form>
+      </div>
 
-      <label>Severity
-        <select id="severity" required>
-          <option value="Low">Low</option>
-          <option value="Medium" selected>Medium</option>
-          <option value="High">High</option>
-        </select>
-      </label>
+      <div class="citizen-side">
+        <div class="citizen-card track-card">
+          <div class="section-heading">
+            <span class="step-number">02</span>
+            <div><h3>Track your report</h3><p>Use the report ID shown after submission.</p></div>
+          </div>
+          <form id="trackForm" class="track-row">
+            <input type="text" id="trackId" placeholder="E-XXXXXXXX" aria-label="Report ID" autocomplete="off">
+            <button type="submit" class="btn-small">Track</button>
+          </form>
+          <div id="trackResult" aria-live="polite"></div>
+        </div>
 
-      <label>People affected
-        <input type="number" id="affected" min="1" max="10000" value="1" required>
-      </label>
-
-      <button type="submit" class="btn-primary">Submit report</button>
-      <p class="form-status" id="citizenStatus" role="status"></p>
-    </form>
-
-    <div class="tracker">
-      <h3>Track a report</h3>
-      <form id="trackForm" class="track-row">
-        <input type="text" id="trackId" placeholder="E001" aria-label="Report ID" autocomplete="off">
-        <button type="submit" class="btn-small">Check status</button>
-      </form>
-      <div id="trackResult" aria-live="polite"></div>
+        <div class="citizen-card next-card">
+          <p class="eyebrow">WHAT HAPPENS NEXT</p>
+          <ol class="next-steps">
+            <li><span>1</span><div><strong>Report received</strong><small>Your report is saved for the authority.</small></div></li>
+            <li><span>2</span><div><strong>Authority reviews</strong><small>Responders verify details and assign help.</small></div></li>
+            <li><span>3</span><div><strong>Follow progress</strong><small>Enter your report ID above for the latest status.</small></div></li>
+          </ol>
+          <p class="privacy-note">Keep your report ID so you can check its status later.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -145,11 +166,8 @@
 </main>
 
 <footer class="footer">
-  <span>Rescue &amp; Disaster Management System — Frontend v1.2</span>
-  <span class="footer-actions">
-    <button type="button" class="btn-link" id="demoBtn">Load demo data</button>
-    <button type="button" class="btn-link" id="resetBtn">Reset all data</button>
-  </span>
+  <span>Rescue &amp; Disaster Management System</span>
+  <span class="footer-actions">Reports are saved by the response system</span>
 </footer>
 
 <div id="toasts" class="toasts" aria-live="polite"></div>

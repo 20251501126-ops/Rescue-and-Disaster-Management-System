@@ -89,7 +89,7 @@ async function api(path, options = {}) {
     });
   } catch (error) {
     throw new Error(
-      "Backend se connection nahi ho raha. Check karo Spring Boot running hai ya nahi."
+      "Could not reach the backend. Start Spring Boot on port 8081 and open this page from the local web server."
     );
   }
 
@@ -107,6 +107,7 @@ async function api(path, options = {}) {
   if (!response.ok) {
     const message =
       data?.message ||
+      (data?.messages ? Object.values(data.messages).join(" ") : "") ||
       data?.error ||
       `Request failed (${response.status})`;
 
@@ -165,12 +166,23 @@ async function refreshAll(showMessage = false) {
       getDashboard()
     ]);
 
+    const connection = $("apiConnection");
+    if (connection) {
+      connection.classList.remove("offline");
+      connection.lastChild.textContent = " Connected to response system";
+    }
+
     renderAll();
 
     if (showMessage) {
       toast("Data successfully refreshed");
     }
   } catch (error) {
+    const connection = $("apiConnection");
+    if (connection) {
+      connection.classList.add("offline");
+      connection.lastChild.textContent = " Response system unavailable";
+    }
     toast(error.message, "err");
   }
 }
@@ -201,6 +213,7 @@ function freeTeamCount() {
 const tabs = [...document.querySelectorAll(".tab")];
 
 function showTab(name, focus = false) {
+  document.body.classList.toggle("citizen-mode", name === "citizen");
   tabs.forEach(tab => {
     const active = tab.dataset.tab === name;
 
@@ -371,9 +384,23 @@ $("trackForm").addEventListener("submit", async event => {
   event.preventDefault();
 
   trackedId = $("trackId").value.trim().toUpperCase();
+  if (!trackedId) {
+    $("trackResult").innerHTML = `<p class="empty-note">Enter the report ID you received after submitting.</p>`;
+    $("trackId").focus();
+    return;
+  }
 
-  await refreshAll();
-  renderTracker();
+  const button = event.submitter;
+  if (button) button.disabled = true;
+  $("trackResult").innerHTML = `<p class="empty-note">Checking the response system…</p>`;
+  try {
+    await getEmergencies();
+    renderTracker();
+  } catch (error) {
+    $("trackResult").innerHTML = `<p class="empty-note">${esc(error.message)}</p>`;
+  } finally {
+    if (button) button.disabled = false;
+  }
 });
 
 function renderTracker() {
@@ -631,22 +658,6 @@ $("exportBtn").addEventListener("click", () => {
   URL.revokeObjectURL(url);
 });
 
-/* ---------- Demo and reset ---------- */
-
-$("demoBtn").addEventListener("click", () => {
-  toast(
-    "Demo data is disabled in backend mode. Create a real emergency instead.",
-    "err"
-  );
-});
-
-$("resetBtn").addEventListener("click", () => {
-  toast(
-    "Reset is disabled because backend records must not be deleted locally.",
-    "err"
-  );
-});
-
 /* ---------- Dashboard ---------- */
 
 function renderStats() {
@@ -849,10 +860,8 @@ function renderAll() {
 /* ---------- Initial application start ---------- */
 
 const startTab = location.hash.slice(1);
-
-if (["citizen", "authority", "team"].includes(startTab)) {
-  showTab(startTab);
-}
+const validTabs = ["citizen", "authority", "team"];
+showTab(validTabs.includes(startTab) ? startTab : "citizen");
 
 refreshAll();
 
