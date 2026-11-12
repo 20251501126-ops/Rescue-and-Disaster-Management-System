@@ -167,7 +167,7 @@ public class EmergencyService {
                 );
 
         emergency.setStatus("Completed");
-        team.setTeamStatus("Completed");
+         team.setTeamStatus("Available");
 
         rescueTeamRepository.save(team);
 
