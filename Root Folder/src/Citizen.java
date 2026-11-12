@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * INHERITANCE
+ * INHERITANCE hello
  * -----------
  * Citizen "is-a" Person, so it extends Person and automatically gets
  * name, contactNumber, personId, and getContactCard() for free.
